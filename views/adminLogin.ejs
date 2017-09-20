@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/pea.css" rel="stylesheet">
+<!--     <link rel="stylesheet" href="./css/styles.css"> -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <style>
+
+    </style>
+</head>
+
+<body style="background-color:#282828">
+
+    <div class="container-fluid">
+        <!-- head -->
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="admin">
+                    <div class="page-header">
+                        <a href = "/" class="titlePea"><h1>Admin</a><small>Login</small></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+
+        <div class="row" style="height:10px;">
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+                    
+            <div class="col-md-4">
+                <div class="row" style="height: 50px"></div>
+                <center>
+                <form action="/adminLogin" class="form admin" method="POST" style="width: 300px">
+                    <div class="input-group">
+                        <span class="input-group-addon">账号</span>
+                        <input type="text" class="form-control" id="username" name="user">
+                    </div>
+    
+                    <div class="row" style="height: 10px"></div>
+                    <div class="input-group">
+                        <span class="input-group-addon">密码</span>
+                        <input type="password" class="form-control" id="password" name="pswd">
+                    </div>
+                    <div class="row" style="height: 10px"></div>
+                    <button type="submit" class="btn-info form-control">登录</button>
+                </form>
+                </center>
+                <div class="row" style="height:10px;"></div>
+                <div class="text"><font color="#33cc99"><center><%= msg %></center></font></div>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+       
+    </div>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PEA Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/pea.css" rel="stylesheet">
+    <style>
+
+    </style>
+</head>
+
+<body style="background-color:#282828">
+
+    <div class="container-fluid">
+        <!-- head -->
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="student">
+                    <div class="page-header">
+                        <a href = "/" class="titlePea"><h1>PEA</a><small>Login</small></h1>
+                    </div>
+                </div>
+                <div class="teacher">
+                    <div class="page-header">
+                        <a href = "/" class="titlePea"><h1>PEA</a><small>Register</small></h1>
+                    </div>
+                </div>
+                </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+
+        <div class="row" style="height:10px;">
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+                    
+            <div class="col-md-4">
+                <div class="row" style="height: 50px"></div>
+
+
+
+             <center>
+                    <div class="btn-group" role="group">
+                            <button id="student" type="button" class="btn btn-link btn-lg" style="width: 150px">登录</button>
+                            <button id="teacher" type="button" class="btn btn-link btn-lg" style="width: 150px;">注册</button>
+                    </div>
+                </center> 
+
+
+
+                <div class="row" style="height: 10px"></div>
+                <center>
+                <form action="/login" class="form student" method="POST" style="width: 300px">
+                    <div class="input-group">
+                        <span class="input-group-addon">账号</span>
+                        <input type="text" class="form-control" id="username" name="user">
+                    </div>
+    
+                    <div class="row" style="height: 10px"></div>
+                    <div class="input-group">
+                        <span class="input-group-addon">密码</span>
+                        <input type="password" class="form-control" id="password" name="pswd">
+                    </div>
+                    <div class="row" style="height: 10px"></div>
+                    <button type="submit" class="btn-info form-control">登录</button>
+                </form>
+                </center>
+                <center>
+                <form action="/register" class="form teacher" method="POST" style="width: 300px">
+                    <div class="input-group">
+                        <span class="input-group-addon">学号</span>
+                            <input type="text" class="form-control" id="username" name="user">
+                    </div>
+                    <div class="row" style="height: 10px"></div>
+                    <div class="input-group">
+                        <span class="input-group-addon">昵称</span>
+                        <input type="text" class="form-control" id="nickname" name="name">
+                    </div>
+                    <div class="row" style="height: 10px"></div>
+                    <div class="input-group">
+                        <span class="input-group-addon">密码</span>
+                        <input type="password" class="form-control" id="password" name="pswd">
+                    </div>
+                    <div class="row" style="height: 10px"></div>
+                        <button type="submit" class="btn-info form-control">注册</button>
+                </form>
+                </center>
+                <div class="row" style="height:10px;"></div>
+                <div class="text"><font color="#33cc99"><center><%= msg %></center></font></div>
+
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+       
+    </div>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>

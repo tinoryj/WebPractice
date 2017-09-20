@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>操作成功-即将跳转</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/pea.css" rel="stylesheet">
+<!--     <link rel="stylesheet" href="./css/styles.css"> -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <style>
+
+    </style>
+</head>
+
+<body style="background-color:#282828">
+
+    <div class="container-fluid">
+        <!-- head -->
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="A">
+                    <div class="page-header">
+                        <a href = "/" class="titlePea"><h1>PEA</a><small>错误提示</small></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+                    
+            <div class="col-md-8">
+                <div class="row" style="height: 50px"></div>
+                <font color="#FFFFFF">
+                <h1><%= message %></h1>
+                <h2><%= error.status %></h2>
+                <pre><%= error.stack %></pre>
+                </font>
+                <font color="FFFFFF">
+                <script>
+                    var n=10;	//设定时间
+                    function senfe(){
+                        if(n+1>0){
+                            //标题提示
+                            document.title="本页将在" + n + "秒后跳转到首页！";
+                            //页面提示
+                            document.getElementById('senfe').innerHTML="本页将在<span style=\"color:red;\">" + n + "</span>秒后跳转到首页！";
+                            n--;
+                            setTimeout("senfe()",1000);
+                        }
+                        else{
+                            window.location.href="/";
+                        }
+                    }
+                </script>
+                <body onload="senfe();">
+                <span id="senfe"></span>
+                </body>
+                </font>
+            </div>
+            <div class="col-md-2">
+            </div>
+
+        </div>
+        <footer id="footer">
+                <div class="row" style="height: 100px"></div>
+        </footer>
+       
+    </div>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

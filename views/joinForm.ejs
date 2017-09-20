@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JoinUs</title>
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/pea.css" rel="stylesheet">
+<!--     <link rel="stylesheet" href="./css/styles.css"> -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body style="background-color:#282828">
+    <div class="container-fluid">
+        <!-- head -->
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="student">
+                    <div class="page-header">
+                        <a href = "/" class="titlePea"><h1>PEA </a><small>Join Us</small><center><font color="white">招新赛报名</font></center></h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+                    
+            <div class="col-md-6">
+                <div class="text"><font color="#cc0000"><center><h4><%= msg %></h4></center></font></div>
+                <font color="#33cc99">
+                    
+                <form action="/joinUs" class="form join" method="POST" >
+                    <div class="row" style="height:20px;"></div>
+                    <div class="form-group">
+                            <label class="col-sm-2 control-label"><h4>姓名</h4></label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="studentid" name="name" placeholder="请输入姓名">
+                            </div>
+                    </div>
+                    <div class="row" style="height:50px;"></div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label"><h4>学号</h4></label>
+                        <div class="col-sm-10">
+                              <input type="text" class="form-control" id="username" name="stdid" placeholder="请输入学号">
+                        </div>
+                    </div>
+
+                    
+                    <div class="row" style="height:50px;"></div>
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label"><h4>选题</h4></label>
+                        <div class="col-sm-6">
+                        <div>
+                                <label>
+                                    点击题目名称以查看详细题目内容
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-offset-1 col-sm-6">
+                                <h4>
+
+                                <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="task" name="task" value="A">
+                                            <a href = "/notice/A">硬件A题&mdash;温度光强监测装置</a>
+                                        </label>
+                                </div>
+                                <div class="row" style="height:5px;"></div>
+                                <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="task" name="task" value="B">
+                                            <a href = "/notice/B">硬件B题&mdash;简易电子琴</a>
+                                        </label>
+                                </div>
+                                <div class="row" style="height:5px;"></div>
+                                <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="task" name="task" value="C">
+                                            <a href = "/notice/C">硬件C题&mdash;声光控延时自灭灯 </a>
+                                        </label>
+                                </div>
+                                <div class="row" style="height:5px;"></div>
+                                <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="taskB" name="task" value="D">
+                                            <a href = "/notice/D">软件题</a>
+                                        </label>
+                                </div>
+                                </h4>
+                        </div>
+                    </div>
+
+                    <div class="row" style="height:250px;"></div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"><h4>个人简介</h4></label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" rows="6" id="intro" name="introduction" placeholder="[至少20字]：请介绍自己的特长以及与科协相关方向有关的经验"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row" style="height:150px;"></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn-info form-control">加入我们</button>
+                    </div>
+                    <div class="col-sm-3"></div>
+                        <div class="row" style="height:50px;"></div>
+                </form>
+                </font>
+                
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+       
+    </div>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>
