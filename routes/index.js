@@ -29,7 +29,7 @@ router.get('/login', (req, res) => {
 router.get('/error', (req, res) => {
   var err = new Error('功能（页面）暂未开放');
   err.status = 404;
-  err.stack = '所请求的页面（功能）由于SSL证书原因（其实是学长学姐没时间写了ಥ_ಥ），为保证官网安全性暂不开放'
+  err.stack = '所请求的页面（功能）由于SSL证书原因，为保证官网安全性暂不开放（其实是学长学姐没时间写了ಥ_ಥ）'
   res.locals.message = err.message;
   res.locals.error = err;
   // render the error page
@@ -153,7 +153,7 @@ router.post('/register', (req,res) => {
     res.ret('success', { msg: '注册成功！' });
   }
   else {
-    res.ret('login', { msg: '您不被允许注册'});
+    res.ret('login', { msg: '招新结束后开放注册通道，当前仅需要在join us页面内报名招新赛'});
     }
 });
 //管理员登陆响应
