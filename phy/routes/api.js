@@ -27,7 +27,7 @@ var bulid_stroage_funcs = type => {
 var student = bulid_stroage_funcs('student');
 var teacher = bulid_stroage_funcs('teacher');
 var project = bulid_stroage_funcs('project');
-var admin = { "123": "123" };
+var admin = { "admin": "admin" };
 
 var req, res, next;
 var query, params, body;
