@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../head %>
+    <style>
+
+    </style>
+</head>
+
+<body style="background-color:whitesmoke">
+
+    <div class="container" style="background-color:#eee">
+
+        <% include ../pageheader %>
+
+        <div class="row" style="height:10px;">
+
+        </div>
+
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
+            <form class="form" action="/admin" method="POST">
+                <div class="input-group">
+                    <span class="input-group-addon">账号</span>
+                    <input type="text" class="form-control" id="username" name="user" value="<%= req.body.user || '' %>">
+                </div>
+                <div class="row" style="height: 10px"></div>
+                <div class="input-group">
+                    <span class="input-group-addon">密码</span>
+                    <input type="password" class="form-control" id="password" name="pswd"  value="<%= req.body.pswd || '' %>">
+                </div>
+                <div class="row" style="height: 10px"></div>
+                <button type="submit" class="btn-info form-control">登录</button>
+            </form>
+            <div class="text" style="color: #FF0000"><%= msg %></div>
+        </div>
+
+    </div>
+
+    <% include ../sameScript %>
+</body>
+
+</html>

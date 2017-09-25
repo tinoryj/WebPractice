@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <% include head %>
+    <style>
+
+    </style>
+</head>
+
+<body style="background-color:whitesmoke">
+
+    <div class="container" style="background-color:#eee">
+
+        <% include pageheader %>
+
+        <div class="row" style="height:10px;">
+
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="btn-group" role="group">
+                <button id="student" type="button" class="btn btn-danger" style="width: 150px">学生登录</button>
+                <button id="teacher" type="button" class="btn" style="width: 150px;">教师登录</button>
+            </div>
+            <form action="/login" class="form student" method="POST" style="width: 300px">
+                <div class="input-group">
+                    <span class="input-group-addon">学号</span>
+                    <input type="text" class="form-control" id="username" name="user" value="<%= req.body.user || '' %>">
+                </div>
+                <div class="row" style="height: 10px"></div>
+                <div class="input-group">
+                    <span class="input-group-addon">密码</span>
+                    <input type="password" class="form-control" id="password" name="pswd" value="<%= req.body.pswd || '' %>">
+                </div>
+                <div class="row" style="height: 10px"></div>
+                <button type="submit" class="btn-info form-control">登录</button>
+            </form>
+            <form action="/login" class="form teacher" method="POST" style="width: 300px">
+                <div class="input-group">
+                    <span class="input-group-addon">账号</span>
+                    <input type="text" class="form-control" id="username" name="user" value="<%= req.body.user || '' %>">
+                </div>
+                <div class="row" style="height: 10px"></div>
+                <div class="input-group">
+                    <span class="input-group-addon">密码</span>
+                    <input type="password" class="form-control" id="password" name="pswd" value="<%= req.body.pswd || '' %>">
+                </div>
+                <input type="checkbox" style="display:none;" class="form-control" id="teacher_box" name="teacher" value="true" checked="true">
+                <div class="row" style="height: 10px"></div>
+                <button type="submit" class="btn-info form-control">登录</button>
+            </form>
+            <div class="text" style="color: #FF0000">
+                <%= msg %>
+            </div>
+        </div>
+
+    </div>
+
+    <% include sameScript %>
+    <script src="/js/login.js"></script>
+
+    <% if(req.body.teacher) { %>
+        <script>
+            document.getElementById('teacher').click();
+        </script>
+    <% } %>
+</body>
+
+</html>

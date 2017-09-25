@@ -1,0 +1,23 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">项目详情</h4>
+    </div>
+    <div class="modal-body">
+        <div class="media" src="/pdf/<%= project._id %>.pdf"></div>
+
+    </div>
+    <div class="modal-footer">
+        <% if(accept(project) != 'null') { %>
+        <a href="/project/<%= project._id %>" data-method="post">取消</a>
+        <% } else { %>
+        <form action="/project/<%= project._id %>" method="POST" class="form-inline" role="form">
+            <input type="radio" name="accept" value="true">同意
+            <input type="radio" name="accept" value="false">不同意
+            <button type="submit" id="accept" class="btn btn-primary">提交</button>
+        </form>
+        <% } %>
+    </div>
+</div>
+<script>$('.media').media({height:800, width:"100%" ,autoplay:true});</script>
+

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <% include ../head %>
+        <style>
+
+        </style>
+</head>
+
+<body style="background-color:whitesmoke">
+
+    <div class="container" style="background-color:#eee">
+
+        <% include ../pageheader %>
+
+            <% include navbar %>
+
+
+                <div class="row" style="height:10px;">
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">创新项目</h3>
+                            </div>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>名称</th>
+                                        <th>经费</th>
+                                        <th>导师</th>
+                                        <th>操作</th>
+                                        <th>状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i in projects) {%>
+                                        <tr>
+
+                                            <td>
+                                                <a href="/project/<%= projects[i]._id %>" data-toggle="modal" data-target="#pdf">
+                                                    <%= projects[i].name %>
+                                            </td>
+                                            <td>
+                                                <%= projects[i].money %>
+                                            </td>
+                                            <td>
+                                                <%= projects[i].teacher %>
+                                            </td>
+                                            <td><a href="/project/<%= projects[i]._id %>" data-method="delete">撤销</a></td>
+                                            <td>状态</td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                            <div class="panel-footer">
+                                <% for(var i = 0; i< phase.length; i++){
+                            if(phase[i]['start-request-time'] < Date.now() &&phase[i]['end-request-time'] > Date.now()){%>
+                                    <button type="button" id="addProject" class="btn btn-info center-block" data-toggle="modal" data-target="#newProject" style="width:300px">新建项目</button>
+                                    <% 
+                                    break;
+                                    }}
+                                    if(i==phase.length){ %>
+                                            <button type="button" id="addProject" class="disabled btn btn-info center-block"
+                                                style="width:300px">新建项目</button>
+                                                <% }%>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- foot -->
+                <div class="row">
+                </div>
+
+
+    </div>
+
+    <div class="modal fade" id="newProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <% include addproject %>
+        </div>
+    </div>
+
+
+    <% include ../sameScript %>
+        <script src="/js/jquery.media.js"></script>
+        <script src="/js/student.js"></script>
+        <script src="http://cdn.bootcss.com/jquery-ujs/1.2.2/rails.js"></script>
+
+        <% if(req.method == 'POST') { %>
+            <script>
+                document.getElementById('addProject').click();
+            </script>
+            <% } %>
+
+                <% if(Date.now() > phase['start-request-time'] || Date.now() < phase['end-request-time']) { %>
+                    <script>
+                        $('#addProject').attr('disabled', 'disabled');
+                    </script>
+                    <% } %>
+
+                        <div class="modal fade" id="pdf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content"></div>
+                            </div>
+                        </div>
+</body>
+
+
+
+</html>

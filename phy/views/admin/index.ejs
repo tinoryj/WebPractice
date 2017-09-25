@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <% include ../head %>
+        <style>
+
+        </style>
+</head>
+
+<body style="background-color:whitesmoke">
+
+    <div class="container" style="background-color:#eee">
+
+        <!-- head -->
+        <% include ../pageheader %>
+            <% include navbar %>
+
+
+
+
+                <div class="row" style="height:10px;">
+
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xs-offset-11 col-sm-offset-11 col-md-offset-11 col-lg-offset-11">
+                    <a class="col-" data-toggle="modal" data-target="#newproject">开始项目</a>
+                </div>
+
+
+
+                <!-- body -->
+                <div class="row">
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>项目标题</th>
+                                <th>申请</th>
+                                <th>审核</th>
+                                <th>公示</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i in phase) {%>
+                                <tr>
+                                    <td>
+                                        <%= JSON.parse(JSON.stringify(phase[i]['title'])) %>
+                                    </td>
+                                    <td>
+                                        <%= new Date((phase[i]['start-request-time'])).getFullYear()%>年
+                                            <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-request-time']))).getMonth()+1%>月
+                                                <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-request-time']))).getDate()%>日
+                                                    <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-request-time']))).getHours()%>时-
+                                                        <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-request-time']))).getFullYear()%>年
+                                                            <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-request-time']))).getMonth()+1%>月
+                                                                <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-request-time']))).getDate()%>日
+                                                                    <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-request-time']))).getHours()%>时
+                                    </td>
+                                    <td>
+                                        <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-judge-time']))).getFullYear()%>年
+                                            <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-judge-time']))).getMonth()+1%>月
+                                                <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-judge-time']))).getDate()%>日
+                                                    <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-judge-time']))).getHours()%>时-
+                                                        <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-judge-time']))).getFullYear()%>年
+                                                            <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-judge-time']))).getMonth()+1%>月
+                                                                <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-judge-time']))).getDate()%>日
+                                                                    <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-judge-time']))).getHours()%>时
+                                    </td>
+                                    <td>
+                                        <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-announce-time']))).getFullYear()%>年
+                                            <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-announce-time']))).getMonth()+1%>月
+                                                <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-announce-time']))).getDate()%>日
+                                                    <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-announce-time']))).getHours()%>时
+                                    </td>
+                                    <td><a data-toggle="modal" data-target="#editproject" id="<%= i %>" data-whatever="<%= i %>" onclick="document.getElementById('phase').value=this.getAttribute('id')">更改</a></td>
+                                </tr>
+                                <% }%>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <!-- foot -->
+                <div class="row">
+                </div>
+
+
+    </div>
+
+    <% include ../sameScript %>
+
+        <div class="modal fade" id="newproject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">项目详情</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row center-block" style="width: 90%">
+                            <form class="form-horizontal" action="/project" method="post">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">项目名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="title" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">项目公告</label>
+                                    <div class="col-sm-10">
+                                        <textarea type="text" name="content" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">开始申请时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-request-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-request-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-request-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-request-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">结束申请时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-request-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-request-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-request-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-request-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">开始评判时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-judge-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-judge-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-judge-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-judge-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">结束评判时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-judge-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-judge-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-judge-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-judge-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">公布时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-announce-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-announce-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-announce-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-announce-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal fade" id="editproject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">项目详情</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row center-block" style="width: 90%">
+                            <form class="form-horizontal" action="/project" method="post">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">项目名称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="title" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">项目公告</label>
+                                    <div class="col-sm-10">
+                                        <textarea type="text" name="content" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">开始申请时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-request-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-request-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-request-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-request-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">结束申请时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-request-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-request-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-request-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-request-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">开始评判时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-judge-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-judge-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-judge-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-judge-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">结束评判时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-judge-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-judge-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-judge-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="end-judge-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">公布时间</label>
+                                    <div class="col-sm-10">
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-announce-year" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">年</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-announce-month" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">月</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-announce-date" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">日</label>
+
+                                        <div class="col-sm-2">
+                                            <input type="number" name="start-announce-hour" class="form-control">
+                                        </div>
+                                        <label class="col-sm-1 control-label">时</label>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display: none">
+                                    <input type="number" name="phase" id="phase">
+                                </div>
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">项目详情</h4>
+    </div>
+    <div class="modal-body">
+
+        <div class="row center-block" style="width: 90%">
+            <form class="form-horizontal" enctype="multipart/form-data" id="body" action="/project/" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">项目名称</label>
+                    <div class="col-sm-10">
+                        <p type="text" class="form-control-static" value="<%= new Date(JSON.parse(JSON.stringify(phase[0]['start-request-time']))).getFullYear()%>年">
+                            <%= project.name %>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">指导老师</label>
+                    <div class="col-sm-10">
+                        <p type="text" class="form-control-static">
+                            <%= project.teacher %>
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">申请金额</label>
+                    <div class="col-sm-10">
+                        <p type="number" class="form-control-static">
+                            <%= project.money %>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="media" src="/pdf/<%= project._id %>.pdf"></div>
+    </div>
+    <div class="modal-footer">
+    </div>
+
+<script>
+    $('.media').media({ height: 800, width: "100%", autoplay: true });
+
+</script>

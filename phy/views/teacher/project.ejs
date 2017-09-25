@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <% include ../head %>
+        <style>
+
+        </style>
+</head>
+
+<body style="background-color:whitesmoke">
+
+    <div class="container" style="background-color:#eee">
+
+        <% include ../pageheader %>
+
+
+            <% include navbar %>
+
+                <div class="row" style="height:10px;">
+
+                </div>
+
+
+                <!-- body -->
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">创新项目</h3>
+                            </div>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>名称</th>
+                                        <th>经费</th>
+                                        <th>导师</th>
+                                        <th>我的意见</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(var i in projects) { %>
+                                        <tr id="list" class="<%= ({'true':'success','false':'danger','null':'default'})[accept(projects[i])] %>">
+                                            <td>
+                                                <%= projects[i].name %>
+                                            </td>
+                                            <td>
+                                                <%= projects[i].money %>
+                                            </td>
+                                            <td>
+                                                <%= projects[i].teacher %>
+                                            </td>
+                                            <td>
+                                                <%= ({'true':'同意','false':'不同意','null':'待评价'})[accept(projects[i])] %>
+                                            </td>
+                                            <th><a data-toggle="modal" data-target="#pdf" href="/project/<%= projects[i]._id %>">详情</a></th>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+
+                            <div class="panel-footer">
+                                <% for (var i in phase) if (Date.now() > phase[i]['start-judge-time'] && Date.now() <= phase[i]['end-judge-time']) { %>
+                                    <span>审核时间:<%= new Date(JSON.parse(JSON.stringify(phase[i]['start-judge-time']))).getFullYear()%>年
+                                            <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-judge-time']))).getMonth()+1%>月
+                                                <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-judge-time']))).getDate()%>日
+                                                    <%= new Date(JSON.parse(JSON.stringify(phase[i]['start-judge-time']))).getHours()%>时-
+                                                        <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-judge-time']))).getFullYear()%>年
+                                                            <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-judge-time']))).getMonth()+1%>月
+                                                                <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-judge-time']))).getDate()%>日
+                                                                    <%= new Date(JSON.parse(JSON.stringify(phase[i]['end-judge-time']))).getHours()%>时</span>
+                                    <%}%>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- foot -->
+                <div class="row">
+                </div>
+
+
+    </div>
+
+    <% include ../sameScript %>
+        <script src="/js/jquery.media.js"></script>
+        <script src="/js/teacher-project-xxx.js"></script>
+
+        <div class="modal fade" id="pdf" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content"></div>
+            </div>
+        </div>
+        <script src="http://cdn.bootcss.com/jquery-ujs/1.2.2/rails.js"></script>
+</body>
+
+</html>

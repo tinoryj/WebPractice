@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <% include ../head %>
+        <style>
+
+        </style>
+</head>
+
+<body style="background-color:whitesmoke">
+
+    <div class="container" style="background-color:#eee">
+
+        <% include ../pageheader %>
+
+
+            <% include navbar %>
+
+
+                <div class="row" style="height:10px;">
+
+                </div>
+
+                <!-- body -->
+                <div class="row">
+
+
+                    <form action="#" method="GET" class="form-horizontal" role="form" style="width:600px;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search">
+                            <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </form>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xs-offset-11 col-sm-offset-11 col-md-offset-11 col-lg-offset-11">
+                        <a class="col-" href="#" data-toggle="modal" data-target="#addteacher">添加帐号</a>
+                    </div>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>帐号</th>
+                                <th>姓名</th>
+                                <th>密码</th>
+                                <th>类别</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i in teachers){%>
+                                <tr>
+                                    <td>
+                                        <a data-toggle="modal" data-target="#editteacher" href="/teacher/<%= teachers[i]._id %>">
+                                            <%= teachers[i]._id %>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <%= teachers[i].name %>
+                                    </td>
+                                    <td>
+                                        <%= teachers[i].pswd %>
+                                    </td>
+                                    <td>
+                                        <% for(var j in teachers[i].field){%>
+                                            <%= 
+                                            
+                                            ({'Computational-Electromagnetics':'计算电磁学', 'Microwave-radio-frequency-circuit':'微博射频电路', 'Bioelectromagnetics':'生物电磁学',
+                                            'physics':'物理学', 'Optics':'光学', 'Circuit':'电路', 'Electric-vacuum-field':'电真空领域',
+                                            'other':'其他'})[teachers[i].field[j]]
+                                            
+                                            %>
+                                            <%}%>            
+
+
+
+                                    </td>
+                                    <td><a href="/teacher/<%= teachers[i]._id %>" data-method="delete">删除</a>
+                                        <td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+    </div>
+
+    <!-- foot -->
+    <div class="row">
+    </div>
+
+
+    </div>
+
+    <div class="modal fade" id="addteacher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">教师账号</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form action="/teacher" method="POST" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">教师姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">教师账号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="user">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="pswd">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">领域</label>
+                            <div class="col-sm-10">
+                                <input type="checkbox" value="true" name="Computational-Electromagnetics">计算电磁学
+                                <input type="checkbox" value="true" name="Microwave-radio-frequency-circuit">微波射频电路
+                                <input type="checkbox" value="true" name="Bioelectromagnetics">生物电磁学
+                                <input type="checkbox" value="true" name="physics">物理学
+                                <input type="checkbox" value="true" name="Optics">光学
+                                <input type="checkbox" value="true" name="Circuit">电路
+                                <input type="checkbox" value="true" name="Electric-vacuum-field">电真空领域
+                                <input type="checkbox" value="true" name="other">其他
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <button type="submit" class="btn btn-primary">添加</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <div class="modal fade" id="editteacher" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <% include ../sameScript %>
+
+        <script src="http://cdn.bootcss.com/jquery-ujs/1.2.2/rails.js"></script>
+
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</body>
+
+</html>

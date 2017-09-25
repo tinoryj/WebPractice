@@ -1,0 +1,1 @@
+$('.media').media({height:800, width:850 ,autoplay:true});

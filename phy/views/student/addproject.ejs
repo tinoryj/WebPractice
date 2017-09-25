@@ -1,0 +1,61 @@
+ <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">新建项目</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row center-block" style="width: 90%">
+            <form class="form-horizontal" enctype="multipart/form-data" id="body" action="/project" method="post">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">项目名称</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">负责人</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static"><%=   req.session.name %></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">指导老师</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="teacher" name="teacher">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">申请金额</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="money" name="money">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">项目领域</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" value="true" name="Computational-Electromagnetics">计算电磁学
+                        <input type="checkbox" value="true" name="Microwave-radio-frequency-circuit">微波射频电路
+                        <input type="checkbox" value="true" name="Bioelectromagnetics">生物电磁学
+                        <input type="checkbox" value="true" name="physics">物理学
+                        <input type="checkbox" value="true" name="Optics">光学
+                        <input type="checkbox" value="true" name="Circuit">电路
+                        <input type="checkbox" value="true" name="Electric-vacuum-field">电真空领域
+                        <input type="checkbox" value="true" name="other">其他
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">申请报告</label>
+                    <div class="col-sm-10">
+                        <input type="file" id="file" class="form-control" name="file">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="warningmsg" style="color :#FF0000"> <%= msg %> </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button id="submit" type="submit" class="btn btn-primary">确认</button>
+    </div>
+ </div>

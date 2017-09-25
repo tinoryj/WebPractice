@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <% include ../head %>
+        <style>
+
+        </style>
+</head>
+
+<body style="background-color:whitesmoke">
+
+    <div class="container" style="background-color:#eee">
+
+        <% include ../pageheader %>
+            <% include navbar %>
+
+
+
+                <div class="row" style="height:10px;">
+
+                </div>
+
+
+                <!-- body -->
+                <div class="row">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>项目名称</th>
+                                    <th>消息</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var i in phase) { %>
+                                    <tr id="list" class="<%= (function (phase) {Date.now() > phase['end-judge-time'] ? 'default' : ( Date.now() > phase['start-judge-time'] ? 'success' : 'warning' )})(phase[i])%>">
+                                        <td>
+                                            <%= JSON.parse(JSON.stringify(phase[i]['title'])) %>
+                                        </td>
+                                        <td>
+                                            <%= JSON.parse(JSON.stringify(phase[i]['content'])) %>
+                                        </td>
+                                        </tr>
+                                        <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <!-- foot -->
+                <div class="row">
+                </div>
+
+
+    </div>
+
+    <% include ../sameScript %>
+
+        <script src="http://cdn.bootcss.com/jquery-ujs/1.2.2/rails.js"></script>
+
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <% include ../head %>
+        <style>
+
+        </style>
+</head>
+
+<body style="background-color:whitesmoke">
+
+    <div class="container" style="background-color:#eee">
+
+        <!-- head -->
+        <% include ../pageheader %>
+
+
+            <% include navbar %>
+
+
+                <div class="row" style="height:10px;">
+
+                </div>
+
+                <!-- body -->
+                <div class="row">
+
+
+                    <form action="#" method="GET" class="form-horizontal" role="form" style="width:600px;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search">
+                            <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </form>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xs-offset-11 col-sm-offset-11 col-md-offset-11 col-lg-offset-11">
+                        <a class="col-" data-toggle="modal" data-target="#addstudent">添加帐号</a>
+                    </div>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>帐号</th>
+                                <th>姓名</th>
+                                <th>密码</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i in students){%>
+                                <tr>
+                                    <td>
+                                            <%= students[i]._id %>
+                                    </td>
+                                    <td>
+                                        <%= students[i].name %>
+                                    </td>
+                                    <td>
+                                        <%= students[i].pswd %>
+                                    </td>
+                                    <td><a href="/student/<%= students[i]._id %>" data-method="delete">删除</a>
+                                    <a data-toggle="modal" data-target="#editstudent" href="/student/<%= students[i]._id %>">
+                                            修改
+                                        </a></td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+    </div>
+
+    <!-- foot -->
+    <div class="row">
+    </div>
+
+
+    </div>
+
+    </div>
+
+    <div class="modal fade" id="addstudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">学生信息</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row center-block" style="width: 90%">
+                        <form action="/student" method="post" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">学生姓名</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">学生账号</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="user"></input>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">密码</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="pswd" value="<%= student.pswd %>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10 col-sm-offset-2">
+                                    <button type="submit" class="btn btn-primary">添加</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <hr>
+
+                    <div class="row center-block" style="width: 90%">
+                        <form action="#" method="post" class="form-horizontal" id="student-info"
+                            method="post">
+                            <div class="form-group">
+                                <label class="control-label">批量添加</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">学生信息</label>
+                                <div class="col-sm-10">
+                                    <textarea type="text" id="info" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10 col-sm-offset-2">
+                                    <button type="button" class="btn btn-primary" id="submit" data-dismiss="modal">上传</button>
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+
+                    <div class="row center-block" style="width: 90%">
+                        <div class="form-group">
+                            <label class="control-label">示例</label>
+                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>账号</th>
+                                    <th>姓名</th>
+                                    <th>密码</th>
+                                </tr>
+                            </thead>
+                            <tbody id="content">
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editstudent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <% include ../sameScript %>
+
+        <script src="http://cdn.bootcss.com/jquery-ujs/1.2.2/rails.js"></script>
+
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script>
+            var table;
+            $('#student-info').change(function () {
+                table = $('#info').val().trim();
+                table = table.split('\n');
+                $('#content > tr').remove();
+                if (table[0] === '');
+                else {
+                    for (var row in table) {
+                        table[row] = table[row].split('\t');
+                        $('#content').append(
+                            `<tr>
+                            <td>${table[row][0]}</td>
+                            <td>${table[row][1]}</td>
+                            <td>${table[row][2]}</td>
+                        </tr>`);
+                    }
+                }
+            })
+            $('#submit').click(function(){
+                var cur = 0;
+                for (var row in table) {
+                    
+                    $.ajax({
+                        type:'POST',
+                        url:'/student',
+                        data:{'user':table[row][0],'name':table[row][1],'pswd':table[row][2]},
+                        success:e => { cur++; if (cur == table.length) window.location.reload(); }
+                    })
+                }
+
+            })
+        </script>
+</body>
+
+</html>

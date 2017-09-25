@@ -1,0 +1,70 @@
+{
+    "urls": {
+        // (/ -> /login)
+        "/": "get",
+        // post: user=<string> pswd=<string> [teacher=<bool>]
+        "/login": "get/post",
+        "/logout": "get",
+        // post: user=<string> pswd=<string>
+        "/admin": "get/post",
+        // admin get: [offset=<number>] [limit=<number>] [page=<number>] (admin/index | admin/login)
+        // admin post: title=<string>
+        //             content=<string>
+        //             start-request-year=<number>
+        //             start-request-month=<number>
+        //             start-request-date=<number>
+        //             start-request-hour=<number>
+        //             end-request-year=<number>
+        //             end-request-month=<number>
+        //             end-request-date=<number>
+        //             end-request-hour=<number>
+        //             start-judge-year=<number>
+        //             start-judge-month=<number>
+        //             start-judge-date=<number>
+        //             start-judge-hour=<number>
+        //             end-judge-year=<number>
+        //             end-judge-month=<number>
+        //             end-judge-date=<number>
+        //             end-judge-hour=<number>
+        //             start-announce-year=<number>
+        //             start-announce-month=<number>
+        //             start-announce-date=<number>
+        //             start-announce-hour=<number>
+        // teacher get: [offset=<number>] [limit=<number>] [page=<number>] (teacher/prject)
+        // student post: name=<string>
+        //               teacher=<string>
+        //               money=<string>
+        //               file=<file>
+        "/project": "get/post",
+        // admin get: [phase=<number>] [offset=<number>] [limit=<number>] [page=<number>]
+        // admin post: user=<string> pswd=<string> name=<string>
+        "/teacher": "get/post",
+        // admin get: [offset=<number>] [limit=<number>] [page=<number>]
+        // admin post: user=<string> pswd=<string> name=<string>
+        "/student": "get/post",
+        // teacher post: [accept=<bool>]
+        // student post: name=<string>
+        //               teacher=<string>
+        //               money=<string>
+        //               file=<file>
+        "/project/:project": "get/post/delete",
+        // admin post: pswd=<string> name=<string>
+        "/student/:student": "get/post/delete",
+        // admin post: pswd=<string> name=<string>
+        "/teacher/:teacher": "get/post/delete"
+    },
+    "req.session": {
+        "type": "['admin'|'student'|'teacher']",
+        "user": "账号",
+        "name": "姓名"
+    },
+    "phase": {
+        "title": "string",
+        "content": "string",
+        "start-request-time": "number",
+        "end-request-time": "number",
+        "start-judge-time": "number",
+        "end-judge-time": "number",
+        "start-announce-time": "number"
+    }
+}

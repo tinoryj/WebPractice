@@ -1,0 +1,13 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">项目详情</h4>
+    </div>
+    <div class="modal-body">
+        <div class="media" src="/pdf/<%= project._id %>.pdf"></div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>
+
+<script>$('.media').media({height:800, width:"100%" ,autoplay:true});</script>
